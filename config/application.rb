@@ -33,5 +33,8 @@ module ResizePhotosChallenge
       # mongoid as default orm
       g.orm :mongoid
     end
+
+    # set adapter to active_job
+    config.active_job.queue_adapter = :sidekiq
   end
 end
