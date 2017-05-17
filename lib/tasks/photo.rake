@@ -7,19 +7,13 @@ namespace :photo do
     begin
       response = HttpService.get("#{WEBSERVICE['url']}#{WEBSERVICE['resources']['images']}")
 
-      response['images'].each do |image_url|
-        # Next if the image already exists
-
-        # Download original
-
-        # Create record
-
-        # Generate thumbs
-        ResizeJob.perform_later(image_url)
+      response['images'].each do |image|
+        puts "Sending to worker: #{image['url']}"
+        PhotoJob.perform_later(image: image)
       end
 
     rescue => e
-      puts "#{Time.now} - #{e.message}"
+      puts e.message
       e.backtrace.each{|line| puts line}
     end
 
