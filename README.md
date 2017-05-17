@@ -49,13 +49,19 @@ bundle install
 
 ### Database
 Make sure mongo and redis are running
- 
 ```
 mongod --fork --logpath ./log/mongod.log
 ```
 ```
 redis-server --daemonize yes
 ```
+
+### Migration
+```
+rake db:create
+rake db:migrate
+```
+
 
 ### Queue 
 Make sure sidekiq are running
