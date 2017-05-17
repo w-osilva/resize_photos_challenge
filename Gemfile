@@ -31,6 +31,9 @@ gem 'mongoid', '~> 6.1.0'
 #Use sidekiq to manage queue
 gem 'sidekiq'
 
+# Use mini_magick to image resize
+gem 'mini_magick', require: 'mini_magick'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
