@@ -16,3 +16,63 @@ We are interested in your solution considering:
 3. Automated tests; 
 4. Execution time.
 
+## About Solution
+
+### Language choice
+I used Ruby ​​because I'm more familiar and because it's the language I like to work with.
+The choice was also based on ease of integration with:
+* Mongo
+* Queue system
+* Asynchronous tasks
+
+
+### Dependencies
+* ruby (2.3 or higher)
+* rails (5.0.0.1 or higher)
+* mongodb (3.4.4 or higher)
+* sidekiq
+* redis (3.2.8 or higher)
+* ImageMagick ([link](https://www.imagemagick.org/script/download.php))
+
+
+### How to run this solution?
+
+Clone this repository
+```
+git clone https://github.com/w-osilva/hell_triangle_challenge.git
+```
+
+Run bundler to get dependencies
+```
+bundle install
+```
+
+### Database
+Make sure mongo and redis are running
+ 
+```
+mongod --fork --logpath ./log/mongod.log
+```
+```
+redis-server --daemonize yes
+```
+
+### Queue 
+Make sure sidekiq are running
+```
+sidekiq -C config/sidekiq.yml -d
+```
+
+### Task
+To import Photos from Webservice
+```
+rake photo:import
+```
+
+### API
+Run puma server
+```
+rails s -p 3000 -b 0.0.0.0 -d
+```
+
+Photo list can be viewed in **[http://localhost:3000/photos.json](http://localhost:3000/photos.json)**
